@@ -27,16 +27,16 @@ function cpfExistsInGrid(cpf) {
     });
     return exists;
 }
-function updatePessoa(id, nm_equipe, idade, sexo) {
+function updateEquipe(id, nm_equipe, idade, sexo) {
 
+    debugger;
 
     const equipeData = {
-        Cpf: id,
-        Nome: nm_equipe,
-        Sexo: idade,
-        Dt_Nasc: sexo
+        Id: id,
+        Nm_Equipe: nm_equipe,
+        Sexo: sexo,
+        Idad_Mini: idade
     };
-
     
     fetch('/Equipes/Update', {
         method: 'PUT', // Chamada PUT
@@ -47,7 +47,6 @@ function updatePessoa(id, nm_equipe, idade, sexo) {
     })
         .then(response => {
             if (response.ok) {
-                alert('Equipe atualizada com sucesso!');
                 location.reload(); // Atualiza a página para refletir as mudanças
             } else {
                 alert('Erro ao atualizar a pessoa.');
@@ -56,8 +55,8 @@ function updatePessoa(id, nm_equipe, idade, sexo) {
         .catch(error => console.error('Erro:', error));
 }
 
-function deletePessoa(cpf) {
-    fetch('/Pessoas/Delete?cpf=' + cpf, { 
+function deleteEquipe(Id) {
+    fetch('/Equipes/Delete?Id=' + Id, { 
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -67,15 +66,15 @@ function deletePessoa(cpf) {
             if (response.ok) {
                 location.reload(); // Atualiza a página
             } else {
-                alert('Erro ao excluir a pessoa.');
+                alert('Erro ao excluir a equipe.');
             }
         })
         .catch(error => console.error('Erro:', error));
 }
 
 function cancela() {
-    $('#CPF').val('');
-    $('#Nome').val('');
+    $('#Id').val('3fa85f64-5717-4562-b3fc-2c963f66afa6');
+    $('#Nm_Equipe').val('');
     $('#Sexo').val(0);
-    $('#Dt_Nasc').val('');
+    $('#Idad_Mini').val('');
 }

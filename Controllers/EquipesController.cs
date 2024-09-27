@@ -117,17 +117,17 @@ namespace CadastroEquipesConsumidor.Controllers
             return View(equipes);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete(string cpf)
+        public async Task<IActionResult> Delete(string Id)
 
         {
-            if (string.IsNullOrEmpty(cpf))
+            if (string.IsNullOrEmpty(Id))
             {
-                return BadRequest("CPF não fornecido.");
+                return BadRequest("ID não fornecido.");
             }
 
             try
             {
-                var response = await _httpClient.DeleteAsync($"{apiEquipes}/{cpf}");
+                var response = await _httpClient.DeleteAsync($"{apiEquipes}/{Id}");
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index"); // Redireciona para a lista de pessoas após sucesso
@@ -136,7 +136,7 @@ namespace CadastroEquipesConsumidor.Controllers
                 {
                     // Extrai a mensagem de erro da resposta da API
                     var errorResponse = await response.Content.ReadFromJsonAsync<ErrorResponse>();
-                    string errorMessage = errorResponse?.Message ?? "Erro ao excluir pessoa. Tente novamente.";
+                    string errorMessage = errorResponse?.Message ?? "Erro ao excluir equipe. Tente novamente.";
                     return View("Error", new ErrorViewModel { Message = errorMessage }); // Redireciona para a página de erro
                 }
             }
