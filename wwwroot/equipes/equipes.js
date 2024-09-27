@@ -1,20 +1,19 @@
-﻿$(document).ready(function () {
-    $('#CPF').mask('000.000.000-00');
-});
+﻿
 
 $('.clickable-row').on('click', function () {
     // Obtém os dados da linha clicada
-    const cpf = $(this).data('cpf');
-    const nome = $(this).data('nome');
-    const sexo = $(this).data('sexo');
-    const dtNasc = $(this).data('dt-nasc');
+    var id = $(this).data('id');
+    var nome = $(this).data('nome');
+    var idade = $(this).data('idade');
+    var sexo = $(this).data('sexo');
 
-    // Preenche os campos do formulário
-    $('#CPF').val(cpf);
-    $('#Nome').val(nome);
+    $('#Id').val(id);
+    $('#Nm_Equipe').val(nome);
+    $('#Idad_Mini').val(idade);
     $('#Sexo').val(sexo);
-    $('#Dt_Nasc').val(dtNasc);
 });
+
+
 
 // Função para verificar se o CPF já existe no grid
 function cpfExistsInGrid(cpf) {
@@ -28,27 +27,27 @@ function cpfExistsInGrid(cpf) {
     });
     return exists;
 }
-function updatePessoa(cpf, nome, sexo, dtNasc) {
+function updatePessoa(id, nm_equipe, idade, sexo) {
 
 
-    const pessoaData = {
-        Cpf: cpf,
-        Nome: nome,
-        Sexo: sexo,
-        Dt_Nasc: dtNasc
+    const equipeData = {
+        Cpf: id,
+        Nome: nm_equipe,
+        Sexo: idade,
+        Dt_Nasc: sexo
     };
 
-
-    fetch('/Pessoas/Update', {
+    
+    fetch('/Equipes/Update', {
         method: 'PUT', // Chamada PUT
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(pessoaData) // Converte o objeto para JSON
+        body: JSON.stringify(equipeData) // Converte o objeto para JSON
     })
         .then(response => {
             if (response.ok) {
-                alert('Pessoa atualizada com sucesso!');
+                alert('Equipe atualizada com sucesso!');
                 location.reload(); // Atualiza a página para refletir as mudanças
             } else {
                 alert('Erro ao atualizar a pessoa.');
@@ -58,7 +57,7 @@ function updatePessoa(cpf, nome, sexo, dtNasc) {
 }
 
 function deletePessoa(cpf) {
-    fetch('/Pessoas/Delete?cpf=' + cpf, {
+    fetch('/Pessoas/Delete?cpf=' + cpf, { 
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
