@@ -11,8 +11,6 @@ namespace CadastroEquipesConsumidor.Models
 
         [Range(0, 99, ErrorMessage = "A idade mínima deve ser entre 0 e 99.")]
         public int Idad_Mini { get; set; } // Idade mínima
-
         public string Sexo { get; set; } // Sexo
-
     }
 }

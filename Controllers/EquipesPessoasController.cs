@@ -5,7 +5,6 @@ namespace CadastroEquipesConsumidor.Controllers
 {
     public class EquipesPessoasController : Controller
     {
-
         private readonly HttpClient _httpClient;
 
         // Aqui deve ser atualizado o endereço da API
@@ -26,7 +25,6 @@ namespace CadastroEquipesConsumidor.Controllers
                 {
                     return View("Error", "Não foi possível obter as pessoas.");
                 }
-
                 return View(equipes); // Passa a lista de equipes para a view
             }
             catch (HttpRequestException e)

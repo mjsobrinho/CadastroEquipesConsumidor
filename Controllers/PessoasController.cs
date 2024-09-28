@@ -1,6 +1,5 @@
 ﻿using CadastroEquipesConsumidor.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Json;
 
 namespace CadastroEquipesConsumidor.Controllers
 {
@@ -152,7 +151,6 @@ namespace CadastroEquipesConsumidor.Controllers
 
 
     }
-
 
 
     // Classe para mapear a resposta de erro da API

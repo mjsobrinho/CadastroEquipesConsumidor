@@ -158,7 +158,5 @@ namespace CadastroEquipesConsumidor.Controllers
 
     }
 
-
-
 }
 
