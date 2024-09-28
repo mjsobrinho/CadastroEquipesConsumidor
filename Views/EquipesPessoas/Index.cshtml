@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Equipes com pessoas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    var errorMessages = ViewData.ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+    foreach (var errorMessage in errorMessages)
+    {
+        <script>
+            alert('@Html.Raw(errorMessage)');
+        </script>
+    }
+}
+
+<!-- Formulário para cadastro de nova pessoa -->
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <input type="hidden" class="form-control" id="Id" name="Id" value="3fa85f64-5717-4562-b3fc-2c963f66afa6" />
+    </div>
+
+    <div class="form-group">
+        <label for="cpf">cpf</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Idad_Mini">Idade Mínima</label>
+        <input type="text" class="form-control" id="Idad_Mini" name="Idad_Mini" required maxlength="2" pattern="^(0?[1-9]|[1-9][0-9])$" title="Digite um número entre 1 e 99." />
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="button" class="btn btn-primary" onclick="deleteEquipe($('#Id').val())">Excluir</button>
+    <button type="button" class="btn btn-primary" onclick="cancela()">Cancelar</button>
+</form>
+
+<hr />
+
+<!-- Grid para exibir a lista de equipes -->
+<table class="table">
+    <thead>
+        <tr>
+            <th style="display:none;">ID</th> <!-- Cabeçalho oculto -->
+            <th>Equipe</th>
+            <th>Cpf</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Sexo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var equipePessoas in Model)
+            {
+                @* <tr class="clickable-row" data-id="@equipe.Id" data-nome="@equipe.Nm_Equipe" data-idade="@equipe.Idad_Mini" data-sexo="@equipe.Sexo"> *@
+                <tr>
+                    <td style="display:none;">@equipePessoas.Id</td>
+                    <td>@equipePessoas.Nm_Equipe</td>
+                    <td>@equipePessoas.Cpf</td>
+                    <td>@equipePessoas.Nome</td>
+                    <td>@equipePessoas.idade</td>
+                    <td>@equipePessoas.Sexo</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">Nenhuma equipe encontrada.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mask-plugin/1.14.16/jquery.mask.min.js"></script>
+    <script src="~/equipes/equipes.js"></script>
+
+
+}
