@@ -22,15 +22,16 @@
     </div>
 
     <div class="form-group">
-        <label for="cpf">cpf</label>
-        <input type="text" class="form-control" id="cpf" name="cpf" required />
+        <label for="CPF">CPF</label>
+        <div class="input-group">
+            <input type="text" class="form-control col-md-4" id="CPF" name="CPF" maxlength="14" placeholder="000.000.000-00" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF válido no formato 000.000.000-00" />
+        </div>
     </div>
 
     <div class="form-group">
-        <label for="Idad_Mini">Idade Mínima</label>
-        <input type="text" class="form-control" id="Idad_Mini" name="Idad_Mini" required maxlength="2" pattern="^(0?[1-9]|[1-9][0-9])$" title="Digite um número entre 1 e 99." />
+        <label for="Nome">Nome</label>
+        <input type="text" class="form-control" id="Nome" name="Nome" disabled required />
     </div>
-
 
 
     <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -80,7 +81,7 @@
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mask-plugin/1.14.16/jquery.mask.min.js"></script>
-    <script src="~/equipes/equipes.js"></script>
+    <script src="~/pages/equipesPessoas/equipesPessoas.js"></script>
 
 
 }
