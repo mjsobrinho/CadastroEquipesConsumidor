@@ -118,7 +118,7 @@ namespace CadastroEquipesConsumidor.Controllers
             // Caso ocorra um erro, retorna a view com os dados preenchidos
             return View(pessoa);
         }
-        [HttpGet]
+        [HttpDelete]
         public async Task<IActionResult> Delete(string cpf)
 
         {
