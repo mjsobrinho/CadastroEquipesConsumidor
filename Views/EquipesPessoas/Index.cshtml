@@ -23,10 +23,9 @@
     </div>
 
     <div class="form-group mb-3">
-        <!-- Adiciona espaçamento inferior -->
         <label for="CPF">CPF</label>
         <div class="input-group">
-            <input type="text" class="form-control col-md-4" id="CPF" name="CPF" maxlength="14" required />
+            <input type="text" class="form-control col-md-4" id="CPF" name="CPF" maxlength="14" placeholder="000.000.000-00" required oninput="formatCPF(this)" />
         </div>
     </div>
 
@@ -98,4 +97,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mask-plugin/1.14.16/jquery.mask.min.js"></script>
     <script src="~/pages/equipesPessoas/equipesPessoas.js"></script>
+    <script src="~/pages/global/global.js"></script>
 }

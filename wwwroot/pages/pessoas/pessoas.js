@@ -1,6 +1,17 @@
 ﻿$(document).ready(function () {
-    $('#CPF').mask('000.000.000-00');
 
+    $('#CPF').on("blur", function () {
+
+        let cpf = $(this).val(); // Obtém o valor do campo CPF
+        cpf = cpf.replace(/\D/g, ''); // Remove tudo que não for número (máscara)
+
+        const isValid = validarCPF(cpf);
+        if (!isValid) {
+            alert("CPF inválido!");
+            return false;
+        }
+       
+    });
 
     function cpfExistsInGrid(cpf) {
         let exists = false;
@@ -85,21 +96,6 @@ function deletePessoa(cpf) {
             }
         })
         .catch(error => console.error('Erro:', error));
-}
-
-function formatCPF(cpfInput) {
-    // Remove todos os caracteres não numéricos
-    let cpfValue = cpfInput.value.replace(/\D/g, '');
-
-    // Adiciona a máscara no CPF
-    if (cpfValue.length > 11) {
-        cpfValue = cpfValue.slice(0, 11); // Limita a 11 caracteres
-    }
-
-    cpfInput.value = cpfValue
-        .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona o primeiro ponto
-        .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona o segundo ponto
-        .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona o traço
 }
 
 function cancela() {
