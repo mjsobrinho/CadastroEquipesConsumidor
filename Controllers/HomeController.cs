@@ -23,6 +23,16 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult ErrorPage()
+    {
+        var errorViewModel = new ErrorViewModel
+        {
+            Message = "Erro ao acessar a API"
+        };
+
+        return View("Error", errorViewModel);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

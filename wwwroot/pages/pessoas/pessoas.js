@@ -1,5 +1,18 @@
 ﻿$(document).ready(function () {
     $('#CPF').mask('000.000.000-00');
+
+
+    function cpfExistsInGrid(cpf) {
+        let exists = false;
+        $('#pessoasGrid tbody tr').each(function () {
+            const rowCpf = $(this).find('td:first').text().trim();
+            if (rowCpf === cpf) {
+                exists = true;
+                return false; // Para o loop se encontrar
+            }
+        });
+        return exists;
+    }
 });
 
 $('.clickable-row').on('click', function () {
@@ -72,6 +85,21 @@ function deletePessoa(cpf) {
             }
         })
         .catch(error => console.error('Erro:', error));
+}
+
+function formatCPF(cpfInput) {
+    // Remove todos os caracteres não numéricos
+    let cpfValue = cpfInput.value.replace(/\D/g, '');
+
+    // Adiciona a máscara no CPF
+    if (cpfValue.length > 11) {
+        cpfValue = cpfValue.slice(0, 11); // Limita a 11 caracteres
+    }
+
+    cpfInput.value = cpfValue
+        .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona o primeiro ponto
+        .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona o segundo ponto
+        .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona o traço
 }
 
 function cancela() {

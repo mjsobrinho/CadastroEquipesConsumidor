@@ -1,16 +1,39 @@
-﻿$('#CPF').on("blur", function () {
+﻿$(document).ready(function () {
+    $('#equipesDropdown').change(function () {
+        inicializaVariaveis();
+    });
 
-    let cpf = $(this).val(); // Obtém o valor do campo CPF
-    cpf = cpf.replace(/\D/g, ''); // Remove tudo que não for número (máscara)
 
-    const isValid = validarCPF(cpf);
-    if (!isValid) {
-        alert("CPF inválido!");
-    }
-    else {
-        getPessoaNome(cpf);
-    }
+    $('.clickable-row').on('click', function () {
+        // Obtém os dados da linha clicada
+        var id_equipe = $(this).data('id_equipe');
+        var nome = $(this).data('nome');
+        var cpf = $(this).data('cpf');
+
+        $('#equipesDropdown').val(id_equipe);
+        $('#CPF').val(cpf);
+        $('#Nome').val(nome);
+    });
+
+    $('#CPF').on("blur", function () {
+
+        let cpf = $(this).val(); // Obtém o valor do campo CPF
+        cpf = cpf.replace(/\D/g, ''); // Remove tudo que não for número (máscara)
+
+        const isValid = validarCPF(cpf);
+        if (!isValid) {
+            alert("CPF inválido!");
+        }
+        else {
+            getPessoaNome(cpf);
+        }
+    });
+
+
+
 });
+
+
 
 
 function validarCPF(cpf) {
@@ -79,10 +102,36 @@ function getPessoaNome(cpf) {
 }
 
 
+function inicializaVariaveis() {
+
+    var id = $('#equipesDropdown').val();
+
+    $('#Id_Equipe').val(id);
+    $('#Sexo').val('');
+
+}
+
+function deleteEquipesPessoas(Id_Equipe, cpf) {
+    fetch('/EquipesPessoas/Delete?Id_Equipe=' + Id_Equipe + '&cpf=' + cpf, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                location.reload(); // Atualiza a página
+            } else {
+                alert('Erro ao excluir a equipe.');
+            }
+        })
+        .catch(error => console.error('Erro:', error));
+}
+
+
 
 function cancela() {
     $('#CPF').val('');
     $('#Nome').val('');
-    $('#Sexo').val(0);
-    $('#Dt_Nasc').val('');
+    $('#equipesDropdown').val(0);
 }

@@ -4,7 +4,7 @@ namespace CadastroEquipesConsumidor.Models
 {
     public class EquipesModel
     {
-        public Guid? Id { get; set; } // Chave primária do tipo GUID
+        public Guid Id_Equipe { get; set; } // Chave primária do tipo GUID
 
         [StringLength(100)] // Limita o tamanho do nome a 100 caracteres
         public string Nm_Equipe { get; set; } // Nome da equipe

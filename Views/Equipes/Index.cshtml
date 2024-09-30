@@ -18,7 +18,7 @@
 <!-- Formulário para cadastro de nova pessoa -->
 <form asp-action="Create" method="post">
     <div class="form-group">
-          <input type="hidden" class="form-control" id="Id" name="Id" value="3fa85f64-5717-4562-b3fc-2c963f66afa6"  />
+        <input type="hidden" class="form-control" id="Id_Equipe" name="Id_Equipe" value="3fa85f64-5717-4562-b3fc-2c963f66afa6" />
     </div>
 
     <div class="form-group">
@@ -42,8 +42,8 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Cadastrar</button>
-    <button type="button" class="btn btn-primary" onclick="updateEquipe($('#Id').val(), $('#Nm_Equipe').val(), $('#Idad_Mini').val(), $('#Sexo').val())">Alterar</button>
-    <button type="button" class="btn btn-primary" onclick="deleteEquipe($('#Id').val())">Excluir</button>
+    <button type="button" class="btn btn-primary" onclick="updateEquipe($('#Id_Equipe').val(), $('#Nm_Equipe').val(), $('#Idad_Mini').val(), $('#Sexo').val())">Alterar</button>
+    <button type="button" class="btn btn-primary" onclick="deleteEquipe($('#Id_Equipe').val())">Excluir</button>
     <button type="button" class="btn btn-primary" onclick="cancela()">Cancelar</button>
 </form>
 
@@ -64,8 +64,8 @@
         {
             foreach (var equipe in Model)
             {
-                <tr class="clickable-row" data-id="@equipe.Id" data-nome="@equipe.Nm_Equipe" data-idade="@equipe.Idad_Mini" data-sexo="@equipe.Sexo">
-                    <td style="display:none;">@equipe.Id</td>
+                <tr class="clickable-row" data-id_equipe="@equipe.Id_Equipe" data-nome="@equipe.Nm_Equipe" data-idade="@equipe.Idad_Mini" data-sexo="@equipe.Sexo">
+                    <td style="display:none;">@equipe.Id_Equipe</td>
                     <td>@equipe.Nm_Equipe</td>
                     <td>@equipe.Idad_Mini</td>
                     <td>@equipe.Sexo</td>

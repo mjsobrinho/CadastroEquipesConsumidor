@@ -28,16 +28,21 @@ namespace CadastroEquipesConsumidor.Controllers
 
                 return View(pessoas); // Passa a lista de pessoas para a view
             }
-            catch (HttpRequestException e)
+             catch (HttpRequestException e)
             {
-                return View("Error", $"Erro ao acessar a API: {e.Message}");
-
+                var errorViewModel = new ErrorViewModel{ Message = $"Erro ao acessar a API: {e.Message}"};
+                return View("Error", errorViewModel); 
             }
+
             catch (Exception e)
             {
-                return View("Error", $"Ocorreu um erro inesperado: {e.Message}");
+                var errorViewModel = new ErrorViewModel{Message = $"Ocorreu um erro inesperado:  {e.Message}"};
+                return View("Error", errorViewModel);
             }
         }
+
+        
+    
 
         public IActionResult Create()
         {
@@ -118,6 +123,8 @@ namespace CadastroEquipesConsumidor.Controllers
             // Caso ocorra um erro, retorna a view com os dados preenchidos
             return View(pessoa);
         }
+       
+        
         [HttpDelete]
         public async Task<IActionResult> Delete(string cpf)
 
@@ -151,7 +158,6 @@ namespace CadastroEquipesConsumidor.Controllers
                 return View("Error", new ErrorViewModel { Message = $"Ocorreu um erro inesperado: {e.Message}" });
             }
         }
-
 
     }
 

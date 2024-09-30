@@ -2,12 +2,12 @@
 
 $('.clickable-row').on('click', function () {
     // Obtém os dados da linha clicada
-    var id = $(this).data('id');
+    var id = $(this).data('id_equipe');
     var nome = $(this).data('nome');
     var idade = $(this).data('idade');
     var sexo = $(this).data('sexo');
 
-    $('#Id').val(id);
+    $('#Id_Equipe').val(id);
     $('#Nm_Equipe').val(nome);
     $('#Idad_Mini').val(idade);
     $('#Sexo').val(sexo);
@@ -27,12 +27,12 @@ function cpfExistsInGrid(cpf) {
     });
     return exists;
 }
-function updateEquipe(id, nm_equipe, idade, sexo) {
+function updateEquipe(id_quipe, nm_equipe, idade, sexo) {
 
     debugger;
 
     const equipeData = {
-        Id: id,
+        Id_Equipe: id_quipe,
         Nm_Equipe: nm_equipe,
         Sexo: sexo,
         Idad_Mini: idade
@@ -55,8 +55,10 @@ function updateEquipe(id, nm_equipe, idade, sexo) {
         .catch(error => console.error('Erro:', error));
 }
 
-function deleteEquipe(Id) {
-    fetch('/Equipes/Delete?Id=' + Id, { 
+function deleteEquipe(Id_Equipe) {
+
+
+    fetch('/Equipes/Delete?Id_Equipe=' + Id_Equipe, { 
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -73,7 +75,7 @@ function deleteEquipe(Id) {
 }
 
 function cancela() {
-    $('#Id').val('3fa85f64-5717-4562-b3fc-2c963f66afa6');
+    $('#Id_Equipe').val('3fa85f64-5717-4562-b3fc-2c963f66afa6');
     $('#Nm_Equipe').val('');
     $('#Sexo').val(0);
     $('#Idad_Mini').val('');

@@ -31,12 +31,14 @@ namespace CadastroEquipesConsumidor.Controllers
             }
             catch (HttpRequestException e)
             {
-                return View("Error", $"Erro ao acessar a API: {e.Message}");
-
+                var errorViewModel = new ErrorViewModel { Message = $"Erro ao acessar a API: {e.Message}" };
+                return View("Error", errorViewModel);
             }
+
             catch (Exception e)
             {
-                return View("Error", $"Ocorreu um erro inesperado: {e.Message}");
+                var errorViewModel = new ErrorViewModel { Message = $"Ocorreu um erro inesperado:  {e.Message}" };
+                return View("Error", errorViewModel);
             }
         }
 
@@ -117,17 +119,17 @@ namespace CadastroEquipesConsumidor.Controllers
             return View(equipes);
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete(string Id)
+        public async Task<IActionResult> Delete(string Id_Equipe)
 
         {
-            if (string.IsNullOrEmpty(Id))
+            if (string.IsNullOrEmpty(Id_Equipe))
             {
                 return BadRequest("ID não fornecido.");
             }
 
             try
             {
-                var response = await _httpClient.DeleteAsync($"{apiEquipes}/{Id}");
+                var response = await _httpClient.DeleteAsync($"{apiEquipes}/{Id_Equipe}");
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index"); // Redireciona para a lista de pessoas após sucesso
