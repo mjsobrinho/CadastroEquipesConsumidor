@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     
 
-    $('#equipesDropdown').change(function () {
+    $('#equipesDropdown').on('change', function () {
         inicializaVariaveis();
     });
 
