@@ -2,7 +2,7 @@
 
 ## Importante!
 
-É necessário configurar as APIs nas controllers:
+Caso não encontre as API's é necessário verificar e configurar  os endereços nas APIs nas controllers, sempre olhando as respectivas portas
 
 - **EquipesController**
 - **PessoasController**
